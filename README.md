@@ -1,24 +1,36 @@
-# README
+# RubyScout
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+RubyScout is a web application built using Ruby on Rails that crawls multiple job sites and aggregates job postings into one place, making job search easier.
 
-Things you may want to cover:
+## Features
+ Ruby job listing from sites including Ruby on Remote, Rails Jobs Board and Hotwire+Rails  
+ Links to useful sites in the Rails community  
+ Links to useful Ruby and Ruby on Rails resources for learners  
 
-* Ruby version
+## Dependencies
+Ruby 2.7.3  
+Rails 6.1.7  
+Nokogiri gem  
+RSpec gem  
 
-* System dependencies
+## Installation
 
-* Configuration
+Clone the repository:  
+`git clone https://github.com/Fh-Ndiritu/RubyScout.git`  
 
-* Database creation
+Install dependencies:  
+`bundle install`  
 
-* Database initialization
+Run database migrations:  
+`rails db:migrate`  
 
-* How to run the test suite
+Start the Rails server:  
+`rails server`  
 
-* Services (job queues, cache servers, search engines, etc.)
+Open your web browser and navigate to http://localhost:3000 to use the app.  
 
-* Deployment instructions
+## Contributing
+We welcome contributions from anyone! Please fork the repository and create a pull request.  
 
-* ...
+## License
+RubyScout is released under the MIT License.  
