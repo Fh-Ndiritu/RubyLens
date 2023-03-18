@@ -85,6 +85,7 @@ test:
 #
 production:
   <<: *default
-  database: rubyScout_production
-  username: rubyScout
-  password: <%= ENV['RUBYSCOUT_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  database: ruby_scout_production
+  username: ruby_scout
+  password: <%= ENV['ruby_scout_DATABASE_PASSWORD'] %>
