@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+
+@layer components {
+  .btn-primary {
+    @apply py-2 px-4 bg-blue-200;
+  }
+}
+
+*/
+
+body, p, ul, li, td, div{
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.rich-content h2{
+  margin-top: 2rem;
+}

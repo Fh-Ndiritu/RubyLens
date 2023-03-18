@@ -1,0 +1,67 @@
+<%= form_with(model: job) do |form| %>
+  <% if job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+      <ul>
+        <% job.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :source %>
+    <%= form.text_field :source %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company %>
+    <%= form.text_field :company %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remote %>
+    <%= form.check_box :remote %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :salary %>
+    <%= form.text_field :salary %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_posted %>
+    <%= form.datetime_select :date_posted %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.text_field :type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apply_url %>
+    <%= form.text_field :apply_url %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

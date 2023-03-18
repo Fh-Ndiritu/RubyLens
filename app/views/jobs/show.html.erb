@@ -1,0 +1,82 @@
+<div class="bg-gray-100 m-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto py-10">
+      <div class="bg-white shadow rounded-lg" data-controller="job" data-job-id-value="3508" data-job-apply-click-event-value="Clicked apply">
+        <div class="bg-white px-4 py-5 sm:px-6 md:sticky md:top-0 rounded-t-lg border-b border-gray-200">
+          <div class="flex flex-col md:flex-row items-start gap-5">
+            <img class="flex-shrink-0 h-10 sm:h-14 w-10 sm:w-14 object-contain rounded-lg" alt="Arrows logo" 
+             src="<%= display_logo(@job.company_logo) %>">
+            <div class="w-full">
+              <div class="flex flex-col md:flex-row justify-between">
+                <div>
+                  <h1 class="text-xl sm:text-2xl font-bold leading-7 text-gray-900"><%=@job.title %></h1>
+                  <p class="text-black font-medium block" ><%=@job.company %></a>
+                </div>
+                <div class="flex-shrink-0 mt-2 sm:mb-2 md:mb-0 md:md-0">
+                  <a 
+                  class="inline-flex items-center px-4 py-2 border border-transparent 
+                  text-sm font-medium rounded-md shadow-sm bg-yellow-600 hover:bg-black 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2" 
+                  data-action="click->job#onApply" 
+                  href="<%=@job.apply_url %>"
+                  >
+                  Apply now
+                  </a>
+                </div>
+              </div>
+              <div class="mt-1 flex flex-col sm:mt-0 gap-2">
+                <div class="mt-2 flex items-center text-sm text-gray-500">
+                  <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                    <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
+                  </svg> <%=@job.job_type %>
+                </div>
+                <% if@job.remote %>
+                <div class="flex items-center text-sm text-gray-500">
+                  <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                  </svg> <%=@job.remote %>
+                </div>
+                <% end %>
+                <div class="flex flex-shrink-0 items-center text-sm text-gray-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6.262 6.072a8.25 8.25 0 1010.562-.766 4.5 4.5 0 01-1.318 1.357L14.25 7.5l.165.33a.809.809 0 01-1.086 1.085l-.604-.302a1.125 1.125 0 00-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 01-2.288 4.04l-.723.724a1.125 1.125 0 01-1.298.21l-.153-.076a1.125 1.125 0 01-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 01-.21-1.298L9.75 12l-1.64-1.64a6 6 0 01-1.676-3.257l-.172-1.03z" clip-rule="evenodd"></path>
+                  </svg> <%=@job.location %>
+                </div>
+                <% if@job.salary %>
+                  <div class="flex items-center text-sm text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg> <%=@job.salary %>
+                  </div>
+                  <% end %>
+
+                  <div class="flex items-center text-sm text-gray-500">
+                    <svg fill="#b3b3b3" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 83.001 83.001" xml:space="preserve" stroke="#b3b3b3"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M41.5,0C18.617,0,0.001,18.617,0.001,41.5c0,22.884,18.616,41.501,41.499,41.501C64.383,83.001,83,64.384,83,41.5 C83,18.617,64.382,0,41.5,0z M41.5,77.001C21.926,77.001,6,61.075,6,41.5S21.925,6,41.5,6C61.075,6,77,21.925,77,41.5 S61.075,77.001,41.5,77.001z"></path> <path d="M53.508,45.32c-0.016,0-0.03,0-0.046,0L44.5,45.454V22c0-1.657-1.343-3-3-3s-3,1.343-3,3v26.5 c0,0.006,0.002,0.012,0.002,0.018c0,0.01-0.002,0.019-0.002,0.027c0.002,0.122,0.025,0.237,0.041,0.354 c0.01,0.073,0.011,0.148,0.025,0.22c0.027,0.129,0.072,0.249,0.115,0.37c0.022,0.063,0.036,0.129,0.062,0.189 c0.052,0.123,0.122,0.235,0.189,0.35c0.031,0.051,0.054,0.107,0.087,0.157c0.076,0.111,0.167,0.21,0.257,0.311 c0.038,0.042,0.069,0.09,0.109,0.131c0.097,0.096,0.206,0.177,0.315,0.26c0.044,0.033,0.083,0.073,0.128,0.104 c0.118,0.08,0.247,0.143,0.376,0.205c0.045,0.021,0.085,0.051,0.131,0.07c0.15,0.063,0.31,0.107,0.472,0.146 c0.03,0.007,0.058,0.021,0.089,0.027c0.194,0.039,0.395,0.061,0.601,0.061c0.015,0,0.031,0,0.046,0l12.008-0.18 c1.656-0.025,2.979-1.389,2.955-3.045C56.483,46.634,55.144,45.32,53.508,45.32z"></path> </g> </g></svg>
+                     &nbsp;<%= time_ago_in_words @job.date_posted %> ago
+                  </div>
+
+                  <div class="flex items-center ">
+                    <a class ="text-sm text-blue-600" href="<%= @job.url+@job.post_url %>" target='_blank'>&nbsp;View on <%= @job.name %>
+                    </a>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="px-4 py-5 sm:p-6 border-b border-gray-200">
+          <div class="rich-text">
+            <div class="rich-content">
+            <%=@job.description.html_safe%>
+            </div>
+          </div>
+          <a class="block inline-flex items-center px-4 py-2 mt-6 border border-transparent text-sm font-medium rounded-md shadow-sm 
+          text-white-500
+          bg-yellow-600 hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 " data-action="click->job#onApply" href="<%= @job.apply_url %>%">Apply now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

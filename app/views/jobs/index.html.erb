@@ -1,0 +1,64 @@
+<ul class="m-auto max-full md:w-full">
+  <% @jobs.each do |job| %>
+    <li>
+      <%= link_to job_path(job.id), class: "block bg-gray-100 my-7 hover:bg-gray-50 rounded-lg shadow" do %>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 px-[.875rem] py-4 sm:px-[1.375rem]">
+            <img class="flex-shrink-0 h-10 sm:h-14 w-10 sm:w-14 object-contain rounded-lg" 
+              alt="Arrows logo" 
+              src="<%= display_logo(job.company_logo) %>" >
+          <div class="w-full truncate">
+            <div class="flex items-start justify-between truncate">
+              <div class="truncate">
+                <h3 class="text-lg font-bold text-gray-800 truncate">   <%= job.title %> </h3>
+                <p class="text-sm text-gray-700 truncate">  <%= job.company %></p>
+                <p class="text-xs text-gray-500 truncate">  <%= job.name %></p>
+              </div>
+              <div class="ml-2 flex-shrink-0 hidden sm:flex">
+                <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-50 text-yellow-800">   <%= job.job_type %> </p>
+              </div>
+            </div>
+            <div class="mt-2 sm:flex sm:justify-between truncate">
+              <div class="flex flex-col gap-2 truncate">
+                <p class="mt-4 flex items-center sm:hidden text-sm text-gray-700 truncate">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                    <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
+                  </svg>
+                  <span class="truncate">Full-time</span>
+                </p>
+                <p class="flex items-center text-sm text-gray-700 truncate">
+                  <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="truncate">   <%= job.remote %> </span>
+                </p>
+                <div class="flex flex-shrink-0 items-center text-sm text-gray-700 truncate">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-600">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6.262 6.072a8.25 8.25 0 1010.562-.766 4.5 4.5 0 01-1.318 1.357L14.25 7.5l.165.33a.809.809 0 01-1.086 1.085l-.604-.302a1.125 1.125 0 00-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 01-2.288 4.04l-.723.724a1.125 1.125 0 01-1.298.21l-.153-.076a1.125 1.125 0 01-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 01-.21-1.298L9.75 12l-1.64-1.64a6 6 0 01-1.676-3.257l-.172-1.03z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p class="truncate">   <%= job.location %> </p>
+                </div>
+                <% if job.salary %>
+                  <p class="flex items-center text-sm text-gray-700 truncate">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="truncate"> <%= job.salary %></span>
+                  </p>
+                <% end %>
+              </div>
+              <div class="mt-2 mb-2 flex flex-shrink-0 items-end text-sm text-gray-700 sm:mt-0 sm:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                </svg>
+                <p>  <%= time_ago_in_words(job.date_posted) %> ago</p>
+                
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
