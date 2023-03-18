@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+job_sites = [
+    {
+        name: 'Go Rails',
+        url: 'https://jobs.gorails.com/'
+    },
+    {
+        name: 'Rails + Hotwire Jobs', 
+        url: 'https://railshotwirejobs.com/'
+    },
+    {
+        name: 'Ruby on Remote', 
+        url: 'https://rubyonremote.com/'
+    }
+]
+
+job_sites.each do |site|
+    JobSite.create!(site)
+end
