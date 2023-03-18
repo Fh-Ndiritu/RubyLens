@@ -14,7 +14,7 @@ class CrawlerController < ApplicationController
       end
 
       date = DateTime.now - days_ago.to_i.days
-      next unless date > 3.days.ago
+      next unless date > 30.days.ago
        
       Job.find_or_create_by(
         :title => link.css('h3')&.first&.content,
@@ -52,7 +52,7 @@ class CrawlerController < ApplicationController
     doc = Nokogiri::HTML(URI.open(job_site.url+'#job-listings'))
     doc.css('li').each do |link|
       date = Time.parse(link.css('p')&.last&.content&.strip)
-      next unless date > 3.days.ago 
+      next unless date > 30.days.ago 
 
       Job.find_or_create_by(
         :title => link.css('h2')&.first&.content&.strip,
