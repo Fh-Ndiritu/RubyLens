@@ -4,7 +4,11 @@ class CrawlerController < ApplicationController
     doc = Nokogiri::HTML(URI.open(job_site.url))
 
     # Search for nodes by css
-    doc.css('ul.space-y-4 li').each do |link|
+    doc.css('.max-w-3xl ul.space-y-4 li').each do |link|
+
+      title = link.css('h3')&.first&.content
+      next unless title.present?
+
       pay = link.css('p')[5]&.content&.strip
       if !pay&.include?('$')
         days_ago = pay&.scan(/\d+/)&.first
@@ -12,18 +16,20 @@ class CrawlerController < ApplicationController
       else
         days_ago = link.css('p')[6]&.content&.scan(/\d+/)&.first
       end
+      date = days_ago.to_i.days.ago.to_date
 
-      date = DateTime.now - days_ago.to_i.days
-      next unless date > 4.days.ago
-       
-      Job.find_or_create_by(
-        :title => link.css('h3')&.first&.content,
+      next unless date > 30.days.ago 
+
+      job_params = {
+        :title => title,
         :company => link.css('p')&.first&.content,
         :remote => link.css('p')[3]&.content&.strip&.include?("Remote") && "Remote" || nil,
-        :location => link.css('p')[4]&.content&.strip,
-        :salary => pay
-        ) do |job|
-          job.date_posted = date
+        :date_posted => date
+      }
+       
+      Job.find_or_create_by(job_params) do |job|
+          job.location = link.css('p')[4]&.content&.strip 
+          job.salary = pay
           job.post_url    = link.css('a')&.first['href']
           job.job_type    = link.css('p')[2]&.content&.strip
           job.job_site_id = job_site.id
@@ -43,7 +49,6 @@ class CrawlerController < ApplicationController
           job.save
 
       end
-
     end
 
   end
@@ -51,17 +56,19 @@ class CrawlerController < ApplicationController
   def ruby_on_remote(job_site)
     doc = Nokogiri::HTML(URI.open(job_site.url+'#job-listings'))
     doc.css('li').each do |link|
-      date = Time.parse(link.css('p')&.last&.content&.strip)
-      next unless date > 4.days.ago 
+      date = Date.parse(link.css('p')&.last&.content&.strip)
+      next unless date > 30.days.ago 
 
-      Job.find_or_create_by(
+      job_params = {
         :title => link.css('h2')&.first&.content&.strip,
         :company => link.css('p')&.first&.content&.strip,
         :remote => "Remote",
-        :location => link.css('span')&.last&.content&.strip
-        ) do |job|
-          job.date_posted = date
+        :date_posted => date
+      }
+
+      Job.find_or_create_by(job_params) do |job|
           job.job_site_id = job_site.id
+          job.location = link.css('span')&.last&.content&.strip
           job.company_logo = link.css('img').first['src'] if link.css('img')&.first
 
           post_url = link.css('a')&.first
@@ -105,8 +112,9 @@ class CrawlerController < ApplicationController
 
       if job_site.name == 'Ruby on Remote'
        ruby_on_remote(job_site)
+      else
+        go_and_hotwire(job_site)
       end
-      go_and_hotwire(job_site)
     end
     redirect_to root_path
 
