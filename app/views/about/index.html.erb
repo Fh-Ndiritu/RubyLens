@@ -1,0 +1,29 @@
+<section>
+  <div class="text-gray-600 my-5 text-center w-4/5 m-auto">
+    <h2 class="text-xl text-center mb-3 font-bold">ABOUT</h2>
+    <p>This is a simple web scraping app built with Ruby on Rails. 
+     It collects Ruby job postings from various sites on the web to ease your job search process. 
+
+     At the moment, we include these sites: 
+     <ul class="text- ">
+       <% @job_sites.each do |site| %>
+         <li> 
+            <a 
+              href="<%= site.url %>" 
+              class="text-blue-400"
+            > 
+              <%= site.name %> 
+            </a>
+         </li>
+       <%end%>
+     </ul> 
+    </p>
+    <br/>
+    <p class="font-bold">Fork the repo or contribute here: <a href="https://github.com/Fh-Ndiritu/RubyLens" class="text-blue-400"> RubyLens on Github</a> </p>
+    <br/>
+    <a href="https://www.linkedin.com/in/francis-karuri" class="text-blue-400">Follow me on LinkedIn </a> 
+    <br/>
+    <a href="https://twitter.com/fh_ndiritu" class="text-blue-400"> Follow me on Twitter </a>
+
+  </div>
+</section>
