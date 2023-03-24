@@ -19,3 +19,6 @@ body, p, ul, li, td, div{
 .rich-content h2{
   margin-top: 2rem;
 }
+nav li a:hover{
+  background: none;
+}

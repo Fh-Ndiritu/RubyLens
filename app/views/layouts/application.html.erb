@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RubyScout</title>
+    <title>RubyLens</title>
+    <%= favicon_link_tag 'favicon_io/favicon.ico' %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,7 +14,7 @@
 
   <body class="w-auto m-0 p-0">
     <%= render 'layouts/header' %>
-    <main class="container mx-auto mt-28 p-5">
+    <main class="container mx-auto mt-5 p-5">
       <%= yield %>
     </main>
   </body>

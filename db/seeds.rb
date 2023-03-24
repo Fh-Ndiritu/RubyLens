@@ -24,4 +24,3 @@ job_sites.each do |site|
     JobSite.create!(site)
 end
 
-Job.destroy_all

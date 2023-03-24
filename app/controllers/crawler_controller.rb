@@ -4,19 +4,26 @@ class CrawlerController < ApplicationController
     doc = Nokogiri::HTML(URI.open(job_site.url))
 
     # Search for nodes by css
+    jr = []
     doc.css('.max-w-3xl ul.space-y-4 li').each do |link|
 
       title = link.css('h3')&.first&.content
       next unless title.present?
 
+      currencies = %W[$ ₹ € £]
       pay = link.css('p')[5]&.content&.strip
-      if !pay&.include?('$')
-        days_ago = pay&.scan(/\d+/)&.first
+      if pay.present? && ( !currencies.include?(pay.first) )
+        ago = pay
         pay = nil
       else
-        days_ago = link.css('p')[6]&.content&.scan(/\d+/)&.first
+        ago = link.css('p')[6]&.content
       end
-      date = days_ago.to_i.days.ago.to_date
+
+
+
+      ago_i = ago&.scan(/\d+/)&.first.to_i
+      date =  ago.include?('day') ? ago_i.days.ago :  ago_i.hours.ago
+
 
       next unless date > 30.days.ago 
 
@@ -24,33 +31,30 @@ class CrawlerController < ApplicationController
         :title => title,
         :company => link.css('p')&.first&.content,
         :remote => link.css('p')[3]&.content&.strip&.include?("Remote") && "Remote" || nil,
-        :date_posted => date
+        :location => link.css('p')[4]&.content&.strip,
+        :job_type  => link.css('p')[2]&.content&.strip
       }
-       
-      Job.find_or_create_by(job_params) do |job|
-          job.location = link.css('p')[4]&.content&.strip 
-          job.salary = pay
-          job.post_url    = link.css('a')&.first['href']
-          job.job_type    = link.css('p')[2]&.content&.strip
-          job.job_site_id = job_site.id
-          job.company_logo = link.css('img').first['src'] if link.css('img')&.first
+      job =  Job.find_or_create_by(job_params)
 
-          post_url = link.css('a')&.first 
-          if post_url
-            job.post_url = post_url['href']
+      job.salary = pay
+      job.post_url    = link.css('a')&.first['href']
+      job.job_site_id = job_site.id
+      job.date_posted = date
+      job.company_logo = link.css('img').first['src'] if link.css('img')&.first
 
-            full_post = Nokogiri::HTML(URI.open(job_site.url+job.post_url))
-            job.description =  full_post.css('.rich-content')&.first&.inner_html
+      post_url = link.css('a')&.first 
+      if post_url
+        job.post_url = post_url['href']
 
-            apply_link = full_post.css('h1')&.first&.parent&.parent&.css('a')&.last
-            job.apply_url =  apply_link['href'] if apply_link
-          end
+        full_post = Nokogiri::HTML(URI.open(job_site.url+job.post_url))
+        job.description =  full_post.css('.rich-content')&.first&.inner_html
 
-          job.save
-
+        apply_link = full_post.css('h1')&.first&.parent&.parent&.css('a')&.last
+        job.apply_url =  apply_link['href'] if apply_link
       end
-    end
+      job.save
 
+    end
   end
 
   def ruby_on_remote(job_site)
