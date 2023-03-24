@@ -1,5 +1,5 @@
 {
-  "name": "ruby-scout",
+  "name": "ruby-lens",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
