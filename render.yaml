@@ -1,20 +1,20 @@
 databases:
-  - name: ruby_scout
+  - name: ruby_lens
     ipAllowList: []
-    user: ruby_scout
+    user: ruby_lens
     plan: free
 
 services:
   - type: web
     plan: free
-    name: ruby_scout
+    name: ruby_lens
     env: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: ruby_scout
+          name: ruby_lens
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false

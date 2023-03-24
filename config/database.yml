@@ -86,6 +86,6 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: ruby_scout_production
-  username: ruby_scout
-  password: <%= ENV['ruby_scout_DATABASE_PASSWORD'] %>
+  database: ruby_lens_production
+  username: ruby_lens
+  password: <%= ENV['ruby_lens_DATABASE_PASSWORD'] %>
