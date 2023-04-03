@@ -1,8 +1,8 @@
 <nav id="header" class="w-full z-30 py-1 bg-white  shadow-lg border-b border-gray-200 text-black">
       <div class="w-full flex items-center justify-between mt-0 px-6 py-2">
          <div class='logo'>
-              <%= link_to root_path do %> 
-                  <%= image_tag 'larger.png' %> 
+              <%= link_to root_path do%> 
+                  <%= image_tag 'larger.png', class: 'h-2 w-auto' %> 
               <% end %>
          </div>
          <label for="menu-toggle" class="cursor-pointer md:hidden block">
@@ -19,12 +19,13 @@
                   <li>
                     <%= link_to "Home", root_path, class: "inline-block no-underline text-black hover:text-red-500 font-medium text-lg py-2 px-4 lg:-ml-2"%>
                   </li>
-                  <%# <li>
-                  <a class="inline-block no-underline text-black hover:text-red-500 font-medium text-lg py-2 px-4 lg:-ml-2" href="#">Resources
-                  </a></li> %>
+                  <%# <% <li>
+                     <a class="inline-block no-underline text-black hover:text-red-500 font-medium text-lg py-2 px-4 lg:-ml-2" href="#">Resources
+                  </a>
+                  </li> %>
                   <li>
                     <%= link_to "About", about_index_path, class: "inline-block no-underline text-black hover:text-red-500 font-medium text-lg py-2 px-4 lg:-ml-2"%>
-                  </li>
+                  </li> 
                </ul>
             </nav>
          </div>
@@ -37,4 +38,7 @@
          </div> %>
 
       </div>
-   </nav>
+</nav>
+
+
+   
