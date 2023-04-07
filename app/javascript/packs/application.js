@@ -9,5 +9,16 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 Rails.start()
-Turbolinks.start()
 ActiveStorage.start()
+
+window.addEventListener('load', () => {
+    const menuToggle = document.querySelector('#menu-toggle')
+    const menu = document.querySelector('#menu')
+    menuToggle.addEventListener('click', () => {
+    if(menu.classList.contains('hidden')){
+        menu.classList.remove('hidden')
+    }else{
+        menu.classList.add('hidden')
+    }
+    })
+})

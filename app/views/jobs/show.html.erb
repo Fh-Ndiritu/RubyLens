@@ -18,7 +18,7 @@
                     class="inline-flex items-center px-4 py-2 border border-transparent 
                     text-sm font-medium rounded-md shadow-sm bg-red-600 text-white hover:bg-black 
                     focus:outline-none focus:ring-2 focus:ring-offset-2" 
-                    data-action="click->job#onApply" 
+                    target="_blank"
                     href="<%=@job.apply_url %>"
                     >
                     Apply now
@@ -68,6 +68,7 @@
                       Email your application to:&nbsp;
                       <a 
                         class="font-bold text-red-400" 
+                        target="_blank"
                         href="<%= @job.apply_url %>
                       ">
                         <%= get_email(@job.apply_url) %>
@@ -87,7 +88,8 @@
           <% if get_email(@job.apply_url).nil? %>
             <a class="block inline-flex items-center px-4 py-2 mt-6 border border-transparent text-sm font-medium rounded-md shadow-sm 
             text-white-500
-            bg-red-600 text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 " data-action="click->job#onApply" href="<%= @job.apply_url %>%">Apply now</a>
+            bg-red-600 text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2" 
+             target="_blank" href="<%= @job.apply_url %>%">Apply now</a>
             <%end%>
         </div>
       </div>

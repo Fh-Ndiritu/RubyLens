@@ -1,44 +1,32 @@
-<nav id="header" class="w-full z-30 py-1 bg-white  shadow-lg border-b border-gray-200 text-black">
-      <div class="w-full flex items-center justify-between mt-0 px-6 py-2">
-         <div class='logo'>
-              <%= link_to root_path do%> 
-                  <%= image_tag 'larger.png', class: 'h-2 w-auto' %> 
-              <% end %>
+<nav class=" relative md:shadow-md md:flex md:justify-between items-center">
+   <div class="p-4 flex md:justify-between">
+      <div 
+      class="header-top flex justify-between w-full">
+         <div class='logo w-1/2 md:w-auto'>
+            <%= link_to root_path do%> 
+                  <%= image_tag 'larger.png', class: 'md:h-14' %> 
+            <% end %>
          </div>
-         <label for="menu-toggle" class="cursor-pointer md:hidden block">
+         <div id="menu-toggle" for="menu-toggle" class="cursor-pointer md:hidden block">
             <svg class="fill-current text-red-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                <title>menu</title>
                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
             </svg>
-         </label>
-         <input class="hidden" type="checkbox" id="menu-toggle">
-         
-         <div class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
-            <nav>
-               <ul class="md:flex items-center justify-between text-base text-black pt-4 md:pt-0">
-                  <li>
-                    <%= link_to "Home", root_path, class: "inline-block no-underline text-black hover:text-red-500 font-medium text-lg py-2 px-4 lg:-ml-2"%>
-                  </li>
-                  <%# <% <li>
-                     <a class="inline-block no-underline text-black hover:text-red-500 font-medium text-lg py-2 px-4 lg:-ml-2" href="#">Resources
-                  </a>
-                  </li> %>
-                  <li>
-                    <%= link_to "About", about_index_path, class: "inline-block no-underline text-black hover:text-red-500 font-medium text-lg py-2 px-4 lg:-ml-2"%>
-                  </li> 
-               </ul>
-            </nav>
          </div>
-         
-         <%# <div class="order-2 md:order-3 flex flex-wrap items-center justify-end mr-0 md:mr-4" id="nav-content">
-            <div class="auth flex items-center w-full md:w-full">
-               <button class="bg-transparent text-gray-800  p-2 rounded border border-gray-300 mr-4 hover:bg-gray-100 hover:text-gray-700">Sign in</button>
-               <button class="bg-blue-600 text-gray-200  p-2 rounded  hover:bg-blue-500 hover:text-gray-100">Sign up</button>
-            </div>
-         </div> %>
-
       </div>
-</nav>
+      
+   </div>
 
+   <ul id="menu" 
+   class=" hidden md:block md:flex text-end md:text-center absolute md:relative bg-white w-full md:w-auto  md: px-16 m-0 p-4
+   " >
+      <li > 
+         <%= link_to "Home", root_path, class: "inline-block text-gray-600 hover:text-red-500 font-bold text-xs md:text-sm py-2 px-4 lg:-ml-2 uppercase"%>
+      </li>
+      <li>
+         <%= link_to "About", about_path, class: "inline-block text-gray-600 hover:text-red-500 font-bold text-xs  md:text-sm py-2 px-4 lg:-ml-2 uppercase"%>
+      </li> 
+   </ul>
+</nav> 
 
    
