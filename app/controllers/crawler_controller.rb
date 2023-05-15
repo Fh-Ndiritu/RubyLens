@@ -60,6 +60,7 @@ class CrawlerController < ApplicationController
   def ruby_on_remote(job_site)
     doc = Nokogiri::HTML(URI.open(job_site.url+'#job-listings'))
     doc.css('li').each do |link|
+      next unless link.css('p')&.last&.content&.strip
       date = Date.parse(link.css('p')&.last&.content&.strip)
       next unless date > 30.days.ago 
 
