@@ -1,4 +1,4 @@
-FROM ruby:3.1.4
+FROM ruby:3.1.0
 
 
 # Use a directory called /code in which to store
